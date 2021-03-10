@@ -1,24 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <display-name>AddProduct</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>PetsServlet</display-name>
-    <servlet-name>PetsServlet</servlet-name>
-    <servlet-class>com.example.PetsServlet</servlet-class>
-  </servlet>
-  
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>AddProduct</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<description></description>
+		<display-name>PetsServlet</display-name>
+		<servlet-name>PetsServlet</servlet-name>
+		<servlet-class>com.example.PetsServlet</servlet-class>
+	</servlet>
 
-  <servlet-mapping>
-    <servlet-name>PetsServlet</servlet-name>
-    <url-pattern>/pets</url-pattern>
-  </servlet-mapping>
+	<servlet>
+		<description>
+			</description>
+		<display-name>AddedPrompt</display-name>
+		<servlet-name>AddedPrompt</servlet-name>
+		<servlet-class>com.example.AddedPrompt</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+			</description>
+		<display-name>Error</display-name>
+		<servlet-name>Error</servlet-name>
+		<servlet-class>com.example.Error</servlet-class>
+	</servlet>
+
+
+	<servlet-mapping>
+		<servlet-name>PetsServlet</servlet-name>
+		<url-pattern>/pets</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>PetstServlet</servlet-name>
+		<url-pattern>/addPet</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>AddedPrompt</servlet-name>
+		<url-pattern>/AddedPrompt</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Error</servlet-name>
+		<url-pattern>/Error</url-pattern>
+	</servlet-mapping>
+
 </web-app>	

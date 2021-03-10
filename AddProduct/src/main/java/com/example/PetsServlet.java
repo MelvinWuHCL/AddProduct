@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -26,12 +27,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.Product;
+import com.example.Pets;
 
-
-/**
- * Servlet implementation class PetsServlet
- */
+@WebServlet("/PetShop")
 public class PetsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -54,15 +52,15 @@ public class PetsServlet extends HttpServlet {
                
                Session session = factory.openSession();
                // using HQL
-               List<Product> list = session.createQuery("from Product", Product.class).list();
+               List<Pets> list = session.createQuery("from pets", Pets.class).list();
                
                session.close();
                
                 PrintWriter out = response.getWriter();
                 out.println("<html><body>");
                 out.println("<b>Product Listing</b><br>");
-                for(Product p: list) {
-                        out.println("ID: " + String.valueOf(p.getID()) + ", Name: " + p.getName() +
+                for(Pets p: list) {
+                        out.println("ID: " + String.valueOf(p.getId()) + ", Name: " + p.getName() +
                                         ", Price: " + String.valueOf(p.getPrice()) + ", Color: " + p.getColor().toString() + "<br>");
                 }
                 
@@ -89,7 +87,20 @@ public class PetsServlet extends HttpServlet {
         out.println("<a href='index.jsp'>Return to Main</a><br>");
         out.println("</body></html>");
         
-        
+        int id = Integer.parseInt(request.getParameter("id"));
+		String name = request.getParameter("name");
+		String color = request.getParameter("color");
+		double price = Double.parseDouble(request.getParameter("price"));
+		String petPrice = String.format("%.0f", price);
+		HttpSession session = request.getSession(true);
+		try {		
+			PetShopDAO PetShopDAO = new PetShopDAO();
+			PetShopDAO.addPet(name, color, petPrice);
+			response.sendRedirect("Success");
+		} catch(Exception e) {
+			System.err.println("doPost");
+			e.printStackTrace();
+		}
         
         //TODO: Take all parameters from post, and use hibernate to insert new pet.
         // Then you need to print out some confirmation as to the the success/failure.
